@@ -38,7 +38,7 @@ After=network.target sound.target
 
 [Service]
 ExecStart=/home/pi/librespot \
-  --name "Pi" \
+  --name "ENTER-DESIRED-DEVICE-NAME-HERE" \
   --backend alsa \
   --device hw:0,0 \
   --bitrate 320 \
