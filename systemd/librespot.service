@@ -1,0 +1,21 @@
+[Unit]
+Description=Librespot - Spotify Connect for Pi
+After=network.target sound.target
+OnFailure=librespot-crash.service
+
+[Service]
+ExecStart=/home/pi/librespot \
+  --name "Pi" \
+  --backend alsa \
+  --device hw:0,0 \
+  --bitrate 320 \
+  --volume-ctrl linear \
+  --disable-audio-cache \
+  --cache /home/pi/.cache/librespot \
+  --zeroconf-backend libmdns
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
