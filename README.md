@@ -2,25 +2,26 @@ Spotify Airplay Pi Setup
 
 This guide walks you through setting up your Raspberry Pi as a Spotify Connect and AirPlay compatible speaker using a custom Librespot build that supports Zeroconf broadcasting for all network users.
 
-## Required Packages
+## ✅ Required Packages
 
-| Package Name        | Purpose                                  | Install Command                         |
-|---------------------|-------------------------------------------|------------------------------------------|
-| `git`               | Clone the repository                      | `sudo apt install git`                   |
-| `build-essential`   | Compiler tools (gcc, make, etc.)          | `sudo apt install build-essential`       |
-| `libasound2-dev`    | ALSA audio backend headers                | `sudo apt install libasound2-dev`        |
-| `avahi-daemon`      | Zeroconf (mDNS) support                   | `sudo apt install avahi-daemon`          |
-| `pkg-config`        | Required by some Rust crates              | `sudo apt install pkg-config`            |
-| `libssl-dev`        | TLS support required by librespot crates | `sudo apt install libssl-dev`            |
-| `curl`              | Needed to install Rust via rustup         | `sudo apt install curl`                  |
+| Package | Purpose | Install Command |
+|--------:|:--------|:----------------|
+| `🟢 git` | Clone the repository | `sudo apt install git` |
+| `🛠️ build-essential` | Compiler tools (gcc, make, etc.) | `sudo apt install build-essential` |
+| `🎧 libasound2-dev` | ALSA audio backend support | `sudo apt install libasound2-dev` |
+| `📡 avahi-daemon` | Zeroconf (mDNS) support | `sudo apt install avahi-daemon` |
+| `🧰 pkg-config` | Required by some Rust crates | `sudo apt install pkg-config` |
+| `🔐 libssl-dev` | TLS support for Rust crates | `sudo apt install libssl-dev` |
+| `🌐 curl` | Install Rust with rustup | `sudo apt install curl` |
 
-> You can install all dependencies in one go:
+> **Install all at once:**
 ```bash
 sudo apt update && sudo apt install git build-essential libasound2-dev avahi-daemon pkg-config libssl-dev curl
 ```
 
-### Install Rust via rustup
+---
 
+### 🦀 Install Rust (with `rustup`)
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
