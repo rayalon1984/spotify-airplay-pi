@@ -12,11 +12,18 @@ This guide walks you through setting up your Raspberry Pi as a Spotify Connect a
 | `avahi-daemon`      | Zeroconf (mDNS) support                   | `sudo apt install avahi-daemon`          |
 | `pkg-config`        | Required by some Rust crates              | `sudo apt install pkg-config`            |
 | `libssl-dev`        | TLS support required by librespot crates | `sudo apt install libssl-dev`            |
-| `rustc` & `cargo`   | Rust compiler and package manager         | See [rustup.rs](https://rustup.rs)       |
+| `curl`              | Needed to install Rust via rustup         | `sudo apt install curl`                  |
 
-> You can install all at once:
+> You can install all dependencies in one go:
 ```bash
-sudo apt update && sudo apt install git build-essential libasound2-dev avahi-daemon pkg-config libssl-dev
+sudo apt update && sudo apt install git build-essential libasound2-dev avahi-daemon pkg-config libssl-dev curl
+```
+
+### Install Rust via rustup
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
 ```
 ⸻
 
