@@ -27,6 +27,12 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 ```
 ⸻
+### TL;DR: Optional install script
+You can use this on new Raspberry Pis to repeat the process automatically:
+# Install script:
+https://github.com/rayalon1984/spotify-airplay-pi/blob/main/install.sh
+
+## For tech-geeks - follow this to install step-by-step:
 
 1. Clone and build the Librespot binary with libmdns support
 
@@ -44,7 +50,6 @@ ZC_BACKEND=libmdns cargo build --release \
 # Install to home
 cp ./target/release/librespot ~/librespot
 chmod +x ~/librespot
-
 
 
 ⸻
@@ -76,7 +81,6 @@ RestartSec=5
 
 [Install]
 WantedBy=default.target
-
 
 
 ⸻
@@ -119,15 +123,6 @@ Credentials are saved to ~/.cache/librespot/credentials.json.
 avahi-browse -rt _spotify-connect._tcp
 
 You should see your Pi listed with name Pi, visible to all Spotify accounts in the same LAN.
-
-⸻
-
-6. Optional install script
-
-You can use this on new Raspberry Pis to repeat the process automatically:
-
-Install script:
-https://github.com/rayalon1984/spotify-airplay-pi/blob/main/install.sh
 ⸻
 
 Troubleshooting
