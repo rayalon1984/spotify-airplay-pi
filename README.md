@@ -2,6 +2,22 @@ Spotify Airplay Pi Setup
 
 This guide walks you through setting up your Raspberry Pi as a Spotify Connect and AirPlay compatible speaker using a custom Librespot build that supports Zeroconf broadcasting for all network users.
 
+## Required Packages
+
+| Package Name        | Purpose                                  | Install Command                         |
+|---------------------|-------------------------------------------|------------------------------------------|
+| `git`               | Clone the repository                      | `sudo apt install git`                   |
+| `build-essential`   | Compiler tools (gcc, make, etc.)          | `sudo apt install build-essential`       |
+| `libasound2-dev`    | ALSA audio backend headers                | `sudo apt install libasound2-dev`        |
+| `avahi-daemon`      | Zeroconf (mDNS) support                   | `sudo apt install avahi-daemon`          |
+| `pkg-config`        | Required by some Rust crates              | `sudo apt install pkg-config`            |
+| `libssl-dev`        | TLS support required by librespot crates | `sudo apt install libssl-dev`            |
+| `rustc` & `cargo`   | Rust compiler and package manager         | See [rustup.rs](https://rustup.rs)       |
+
+> You can install all at once:
+```bash
+sudo apt update && sudo apt install git build-essential libasound2-dev avahi-daemon pkg-config libssl-dev
+```
 ⸻
 
 1. Clone and build the Librespot binary with libmdns support
