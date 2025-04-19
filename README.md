@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # 🎶 Spotify Airplay Pi Setup
 
 Turn your Raspberry Pi into a **Spotify Connect** + **AirPlay-compatible** speaker.  
@@ -156,3 +157,71 @@ Should be visible on **any Spotify account** in the same Wi-Fi.
 
 **[rayalon1984](https://github.com/rayalon1984)**  
 GitHub repo: [spotify-airplay-pi](https://github.com/rayalon1984/spotify-airplay-pi)
+=======
+# spotify-airplay-pi
+
+**Spotify Connect + AirPlay-compatible build of Librespot for Raspberry Pi**  
+Built from a legacy `librespot` commit with full support for ALSA audio backend and Zeroconf mDNS advertising (via `libmdns`) so all users on the local network can see and use the device — even across different Spotify accounts.
+
+## Features
+- **Spotify Connect** device on your network
+- **Zeroconf support** with `libmdns`, visible to all users
+- **ALSA backend** for direct audio output
+- Autostart using `systemd --user`
+
+## Install (on new Raspberry Pi)
+
+```bash
+git clone https://github.com/rayalon1984/spotify-airplay-pi ~/spotify-airplay-pi
+cd ~/spotify-airplay-pi
+
+# Build Librespot with libmdns Zeroconf support
+ZC_BACKEND=libmdns cargo build --release \
+  --no-default-features \
+  --features "librespot-playback/alsa-backend with-libmdns"
+
+# Install binary
+cp ./target/release/librespot ~/librespot
+chmod +x ~/librespot
+
+Systemd Autostart
+
+[Unit]
+Description=Librespot - Spotify Connect for Pi
+After=network.target sound.target
+
+[Service]
+ExecStart=/home/pi/librespot \
+  --name "Pi" \
+  --backend alsa \
+  --device hw:0,0 \
+  --bitrate 320 \
+  --volume-ctrl linear \
+  --disable-audio-cache \
+  --cache /home/pi/.cache/librespot \
+  --zeroconf-backend libmdns
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
+
+Then:
+
+systemctl --user daemon-reexec
+systemctl --user daemon-reload
+systemctl --user enable --now librespot.service
+sudo loginctl enable-linger pi
+
+Troubleshooting
+	•	Make sure avahi-daemon is installed and running.
+	•	For Zeroconf to be visible across accounts, --zeroconf-backend libmdns must be used.
+	•	If the port is in use, try --zeroconf-port 57621.
+	•	See log with: journalctl --user -u librespot.service -f
+
+Author
+
+github.com/rayalon1984
+
+>>>>>>> Stashed changes
